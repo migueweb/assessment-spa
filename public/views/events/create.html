@@ -1,0 +1,29 @@
+<form id="createEventForm">
+    <h1>Create Event</h1>
+    <label for="createEventName">
+        Name
+    </label>
+    <input type="text" id="createEventName" name="name" required>
+
+    <label for="createEventDescription">
+        Description
+    </label>
+    <textarea name="description" id="createEventDescription"></textarea>
+
+    <label for="createEventDate">
+        Date
+    </label>
+    <input type="date" id="createEventDate" name="date" required>
+
+    <label for="createEventCapacity">
+        Capacity
+    </label>
+    <input type="number" id="createEventCapacity" name="capacity" required>
+
+    <div class="btn-wrapper">
+        <a href="/dashboard" class="btn-secondary">Cancel</a>
+        <button type="submit">
+            Create event
+        </button>
+    </div>
+</form>

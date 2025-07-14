@@ -1,0 +1,29 @@
+<form id="editEventForm">
+    <h1>Edit Event</h1>
+    <label for="editEventName">
+        Name
+    </label>
+    <input type="text" id="editEventName" name="name" required>
+
+    <label for="editEventDescription">
+        Description
+    </label>
+    <textarea name="description" id="editEventDescription"></textarea>
+
+    <label for="editEventDate">
+        Date
+    </label>
+    <input type="date" id="editEventDate" name="date" required>
+
+    <label for="editEventCapacity">
+        Capacity
+    </label>
+    <input type="number" id="editEventCapacity" name="capacity" required>
+
+    <div class="btn-wrapper">
+        <a href="/dashboard" class="btn-secondary">Cancel</a>
+        <button type="submit">
+            Edit event
+        </button>
+    </div>
+</form>

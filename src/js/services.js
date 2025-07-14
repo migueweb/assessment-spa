@@ -1,0 +1,107 @@
+import axios from "axios";
+
+export class ErrorResponse {
+  constructor(message) {
+    this.message = message
+  }
+}
+const API_URL = "http://localhost:3000"
+
+const ENDPOINTS = {
+  users: "/users",
+  events: "/events",
+}
+
+export async function loginService(data) {
+  try {
+
+    const user = await axios.get(API_URL+ENDPOINTS.users, {
+      params: {email: data.email}
+    })
+
+    if (user.data.length === 0) {
+      return new ErrorResponse("The current email is not registered")
+    }
+    
+    if(user.data[0].password !== data.password) {
+      return new ErrorResponse("The password is wrong")
+    }
+    
+    return user.data[0]
+    
+  } catch (error) {
+
+    return new ErrorResponse("Something went wrong")
+  }
+}
+
+export async function singUpService(data) {
+  try {
+    const user = await axios.get(API_URL+ENDPOINTS.users, {
+      params: {email: data.email}
+    })
+
+    if (user.data.length > 0) {
+      return new ErrorResponse("The current email is registered")
+    }
+    
+    data.role = "visitor"
+
+    const userRegistered = await axios.post(API_URL+ENDPOINTS.users, data) 
+
+    if (userRegistered.status !== 201) {
+      return new ErrorResponse("User can't be registered")
+    }
+
+    return userRegistered.data
+    
+  } catch (error) {
+
+    return new ErrorResponse("Something went wrong")
+  }
+}
+
+export async function createEvent(data) {
+  try {
+
+    const event = await axios.get(API_URL+ENDPOINTS.events, {
+      params: {name: data.name}
+    })
+
+    if (event.data.length > 0) {
+      return new ErrorResponse("There already exist a event with that name")
+    }
+    
+    const eventCreated = await axios.post(API_URL+ENDPOINTS.users, data) 
+
+    if (eventCreated.status !== 201) {
+      return new ErrorResponse("Event can't be created")
+    }
+
+    return eventCreated.data
+    
+  } catch (error) {
+
+    return new ErrorResponse("Something went wrong")
+  }
+}
+
+export async function getEventById(id) {
+    try {
+
+      debugger
+      const event = await axios.get(API_URL+ENDPOINTS.events, {
+        params: {id: id}
+      })
+      
+      if(event.data.length === 0) {
+        return new ErrorResponse("The event can't be found")
+      }
+      
+      return event.data[0]
+
+    } catch(error) {
+      return new ErrorResponse("Something went wrong")
+    }
+
+}
