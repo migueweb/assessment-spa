@@ -1,6 +1,8 @@
 # Events managment software
 
 
+repository: [github.com/migueweb/assessment-spa](https://github.com/migueweb/assessment-spa)
+
 ## Features
 
 - **Authentication**: Login/Register with role-based access
@@ -47,5 +49,5 @@
 ## Author
 + Miguel Amador [@migueweb](https://github.com/migueweb)
 + Ciénega
-+ miguesdev@gmcil.com
++ miguesdev@gmail.com
 + 10********
