@@ -1,0 +1,20 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Administrator",
+            "email": "admin@example.com",
+            "password": "admin12345",
+            "role": "admin"
+        }
+    ],  
+    "events": [
+        {
+            "name": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae odit in voluptatum?",
+            "date": "05-07-2025",
+            "capacity": 12,
+            "assistants": []
+        }
+    ]
+}
