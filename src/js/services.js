@@ -89,19 +89,43 @@ export async function createEvent(data) {
 export async function getEventById(id) {
     try {
 
-      debugger
-      const event = await axios.get(API_URL+ENDPOINTS.events, {
+      const eventFound = await axios.get(API_URL+ENDPOINTS.events, {
         params: {id: id}
       })
       
-      if(event.data.length === 0) {
+      if(eventFound.data.length === 0) {
         return new ErrorResponse("The event can't be found")
       }
       
-      return event.data[0]
+      return eventFound.data[0]
 
     } catch(error) {
       return new ErrorResponse("Something went wrong")
     }
 
+}
+
+export async function updateEvent(id, data) {
+  try {
+    debugger
+    const event = await axios.get(API_URL+ENDPOINTS.events, {
+      params: {id: id}
+    })
+
+    if (event.data.length === 0) {
+      return new ErrorResponse("Event was not found")
+    }
+    
+    const eventUpdated = await axios.put(API_URL+ENDPOINTS.events+ `/${id}`, data) 
+
+    if (eventUpdated.status !== 200) {
+      return new ErrorResponse("Event can't be updated")
+    }
+
+    return eventUpdated.data
+    
+  } catch (error) {
+
+    return new ErrorResponse("Something went wrong")
+  }
 }

@@ -4,7 +4,7 @@ import { getEventById } from "./services";
 import { $ } from "./util"
 
 export async function setEditEventForm() {
-
+    
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams);
     
@@ -12,13 +12,17 @@ export async function setEditEventForm() {
         navigateTo("/dashboard")
     }
 
-    const event = await getEventById(params.id)
+    const eventFound = await getEventById(params.id)
 
-    if (event?.message) {
+    if (eventFound?.message) {
         navigateTo("/dashboard")
     }
-    $("#editEventName").value = ""
-    $("#editEventDescription").value = "" 
-    $("#editEventDate").value = "2017-06-01"
-    $("#editEventCapacity").value = "66" 
+
+
+    $("#editEventName").value = eventFound.name
+    $("#editEventDescription").value = eventFound.description
+    $("#editEventDate").value = eventFound.date
+    $("#editEventCapacity").value = eventFound.capacity
+    $("#eventId").value = eventFound.id
+
 }

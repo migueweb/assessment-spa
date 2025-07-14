@@ -1,6 +1,6 @@
 import '../css/main.css'
 import { router, navigateTo } from './router'
-import { createEvent, loginService, singUpService } from './services'
+import { createEvent, loginService, singUpService, updateEvent } from './services'
 
 const $ = (str) => document.querySelector(str)
 const app = $("#app")
@@ -80,6 +80,36 @@ async function handleOnSubmit(event) {
 
     console.warn("Event created succesfully")
     console.log(data)
+  }
+
+  if (event.target.matches('#editEventForm')) {
+    const formData = new FormData(event.target)
+    const data = Object.fromEntries(formData)
+
+    const eventId = data.id
+    delete data.id
+
+    data.name = data.name.trim()
+    data.description = data.description.trim()
+    data.capacity = parseInt(data.capacity)
+
+
+    if(data.description.length > 500) {
+      console.error("Description max characters lenght is 500")
+      return
+    }
+
+    const eventUpdated = await updateEvent(eventId, data)
+
+
+    if (eventUpdated?.message) {
+      console.error(eventUpdated.message)
+      return
+    }
+
+    console.warn("Event updated succesfully")
+    console.log(data)
+    navigateTo("/dashboard")
   }
 
 }
