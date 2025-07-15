@@ -46,6 +46,8 @@ repository: [github.com/migueweb/assessment-spa](https://github.com/migueweb/ass
 ### default users 
 + Administrator `admin@example.com` `admin12345`
 
+### Postman collection
+[EventsApp.json](EventsApp.json)
 ## Author
 + Miguel Amador [@migueweb](https://github.com/migueweb)
 + Ciénega

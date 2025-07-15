@@ -1,5 +1,5 @@
 import { getCurrentUser } from "./util"
-import { setEditEventForm } from "./onRender"
+import { populateEventsTable, setEditEventForm } from "./onRender"
 
 const routes = {
   404: {
@@ -29,7 +29,8 @@ const routes = {
   '/dashboard': {
     file: '/views/dashboard.html',
     public: false,
-    role: null
+    role: null,
+    onrender: populateEventsTable
   },
   '/dashboard/events/create': {
     file: '/views/events/create.html',

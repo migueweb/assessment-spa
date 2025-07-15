@@ -61,9 +61,19 @@ export async function singUpService(data) {
   }
 }
 
+export async function getEvents() {
+  try {
+    const events = await axios.get(API_URL+ENDPOINTS.events)
+
+  
+    return events.data
+  } catch (error) {
+    return new ErrorResponse("something went wrong")
+  }
+}
 export async function createEvent(data) {
   try {
-
+    debugger
     const event = await axios.get(API_URL+ENDPOINTS.events, {
       params: {name: data.name}
     })
@@ -72,7 +82,7 @@ export async function createEvent(data) {
       return new ErrorResponse("There already exist a event with that name")
     }
     
-    const eventCreated = await axios.post(API_URL+ENDPOINTS.users, data) 
+    const eventCreated = await axios.post(API_URL+ENDPOINTS.events, data) 
 
     if (eventCreated.status !== 201) {
       return new ErrorResponse("Event can't be created")
@@ -128,4 +138,19 @@ export async function updateEvent(id, data) {
 
     return new ErrorResponse("Something went wrong")
   }
+}
+
+export async function deleteEvent(id) {
+    try {
+
+        const res = await axios.delete(API_URL + ENDPOINTS.events + `/${id}`)
+        if (res.status !== 200) {
+            throw new Error()
+        }
+
+        return res.data
+
+    } catch (e) {
+        return new ErrorResponse("Product could not be deleted. Try it again")
+    }
 }

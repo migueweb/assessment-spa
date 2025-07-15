@@ -1,0 +1,258 @@
+{
+  "info": {
+    "name": "EventsApp",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "user Sign up",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "Create a new visitor user.",
+            "url": {
+              "raw": "{{url}}/users",
+              "protocol": "",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Pepe Visitor\",\n    \"email\": \"pepe@example.com\",\n    \"password\": \"123\",\n    \"role\": \"visitor\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Get all users",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "Get all the users.\n",
+            "url": {
+              "raw": "{{url}}/users",
+              "protocol": "",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "Create Event",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "Create a single event",
+            "url": {
+              "raw": "{{url}}/events",
+              "protocol": "",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Hello World\",\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae enim felis. Duis et suscipit felis. Nunc sapien erat, aliquam volutpat risus id, lobortis mattis erat. Vivamus vehicula, ex nec semper gravida,\",\n    \"date\": \"2025-08-15\",\n    \"capacity\": \"14\",\n    \"assistants\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Get events",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "Get all the events.",
+            "url": {
+              "raw": "{{url}}/events",
+              "protocol": "",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Get Event by ID",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "Get a single event by ID.",
+            "url": {
+              "raw": "{{url}}/events/009d",
+              "protocol": "",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "events",
+                "009d"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Update Event",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "Update a event by ID.",
+            "url": {
+              "raw": "{{url}}/events/009d",
+              "protocol": "",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "events",
+                "009d"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Hello World Edited\",\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae enim felis. Duis et suscipit felis. Nunc sapien erat, aliquam volutpat risus id, lobortis mattis erat. Vivamus vehicula, ex nec semper gravida,\",\n    \"date\": \"2025-08-15\",\n    \"capacity\": 14\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete event",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "Delete a event",
+            "url": {
+              "raw": "{{url}}/events/",
+              "protocol": "",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "events",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get html file",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "noauth"
+        },
+        "description": "Get a html file from the FE app.\n",
+        "url": {
+          "raw": "http://localhost:5173/views/events/create.html",
+          "protocol": "http",
+          "host": [
+            "localhost:5173"
+          ],
+          "path": [
+            "views",
+            "events",
+            "create.html"
+          ],
+          "query": [],
+          "variable": []
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

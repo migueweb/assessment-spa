@@ -1,24 +1,29 @@
 import '../css/main.css'
 import { router, navigateTo } from './router'
-import { createEvent, loginService, singUpService, updateEvent } from './services'
+import { createEvent, deleteEvent, loginService, singUpService, updateEvent } from './services'
 
 const $ = (str) => document.querySelector(str)
 const app = $("#app")
 
 router()
 
+
 app.addEventListener("submit", handleOnSubmit)
+app.addEventListener("click", handleOnClick)
+
 
 async function handleOnSubmit(event) {
   event.preventDefault()
+
   if(event.target.matches('#loginForm')) {
+    
     // fetching form data
     const formData = new FormData(event.target)
     const data = Object.fromEntries(formData)  
     const userLogged = await loginService(data)
 
     if (userLogged?.message) {
-      console.error(userLogged.message)
+      alert(userLogged.message)
       return
     }
 
@@ -35,7 +40,7 @@ async function handleOnSubmit(event) {
     data.email = data.email.trim()
     
     if (data.password !== data.confirmPassword) {
-      console.error("passwords are not the same")
+      alert("passwords are not the same")
       return 
     }
 
@@ -45,7 +50,7 @@ async function handleOnSubmit(event) {
 
 
     if (userRegistered?.message) {
-      console.error(userRegistered.message)
+      alert(userRegistered.message)
       return
     }
 
@@ -64,7 +69,7 @@ async function handleOnSubmit(event) {
     data.assistants = []
 
     if(data.description.length > 500) {
-      console.error("Description max characters lenght is 500")
+      alert("Description max characters lenght is 500")
       return
     }
 
@@ -74,12 +79,12 @@ async function handleOnSubmit(event) {
 
 
     if (eventCreated?.message) {
-      console.error(eventCreated.message)
+      alert(eventCreated.message)
       return
     }
 
-    console.warn("Event created succesfully")
-    console.log(data)
+    navigateTo("/dashboard")
+    alert("Event created succesfully")
   }
 
   if (event.target.matches('#editEventForm')) {
@@ -95,7 +100,7 @@ async function handleOnSubmit(event) {
 
 
     if(data.description.length > 500) {
-      console.error("Description max characters lenght is 500")
+      alert("Description max characters length is 500")
       return
     }
 
@@ -103,13 +108,37 @@ async function handleOnSubmit(event) {
 
 
     if (eventUpdated?.message) {
-      console.error(eventUpdated.message)
+      alert(eventUpdated.message)
       return
     }
 
-    console.warn("Event updated succesfully")
+    alert("Event updated succesfully")
     console.log(data)
     navigateTo("/dashboard")
   }
 
+}
+
+async function handleOnClick(event) {
+
+  if(event.target.matches('#logOut')) { 
+    localStorage.clear()
+    navigateTo("/")
+  }
+
+  if(event.target.matches('[data-delete]')) {
+    
+    const eventId = event.target.getAttribute("data-delete")
+    
+    if(confirm("Do you want to delete the event?")) {
+      const eventDeleted = await deleteEvent(eventId)
+      if (eventDeleted?.message) {
+        alert(eventDeleted.message)
+      }
+      alert("Event Deleted")
+      navigateTo('/dashboard')
+      return
+    }
+
+  }
 }
